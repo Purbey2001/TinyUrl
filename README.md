@@ -1,16 +1,58 @@
-# React + Vite
+# 🔗 TinyLink – URL Shortener (Node.js + Express + MongoDB + React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TinyLink is a full-stack URL shortener application inspired by Bitly.  
+It allows users to create short URLs, track click statistics, delete links, and view a clean, responsive dashboard.
 
-Currently, two official plugins are available:
+This project was built as part of a take-home assignment and includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js + Express backend  
+- MongoDB (Mongoose) database  
+- React.js frontend with TailwindCSS  
+- Fully REST-compliant API with validation  
+- Click tracking & last-clicked timestamp  
+- Public redirect route  
+- Stats page for each short code  
+- Deployment-ready structure  
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📌 Features
 
-## Expanding the ESLint configuration
+### ✔ Short Link Creation
+- Create short URLs with automatic or custom short codes  
+- Validates URL format  
+- Ensures short codes are globally unique  
+- Returns JSON containing the full short URL  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✔ Redirection (`/:code`)
+Visiting a short code:
+- Redirects user with HTTP 302  
+- Increments click counter  
+- Updates `lastClicked` timestamp  
+
+### ✔ Dashboard (`/`)
+A React UI that shows:
+- All short links  
+- Target URL  
+- Total clicks  
+- Last clicked time  
+- Buttons to copy, view stats, and delete links  
+- Search/filter (optional)  
+
+### ✔ Stats Page (`/code/:code`)
+Shows detailed analytics for a specific link:
+- Original URL  
+- Creation date  
+- Last clicked  
+- Total clicks  
+
+### ✔ Delete Functionality
+Users can delete any short link.  
+After deletion:
+- Redirect route returns 404  
+- Dashboard updates  
+
+### ✔ Health Check (`/healthz`)
+Returns:
+```json
+{ "ok": true, "version": "1.0" }
