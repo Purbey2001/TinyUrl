@@ -12,7 +12,7 @@ export default function StatsPage({setLinks}) {
 
   useEffect(() => {
     API.get(`/api/links/${code}`)
-      .then((res) => setData(res.data))
+      .then((res) => setData(res.data.link))
       .catch(() => setData(null));
   }, [code]);
 
